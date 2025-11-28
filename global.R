@@ -10,7 +10,7 @@ library(shinythemes)
 #loading and re-coding the data
 dig.df <- read.csv("DIG.csv")
 
-data <- dig.df %>%
+dig_data <- dig.df %>%
   select(
     patient_id = ID,
     treatment_group = TRTMT,
@@ -18,12 +18,12 @@ data <- dig.df %>%
     sex = SEX,
     bmi = BMI,
     potassium_level = KLEVEL,
-    creatinine_level = CREAT,
-    bp_diastolic = DIABP,
-    bp_systolic = SYSBP,
-    hypertension_hist = HYPERTEN,
+    crtn_level = CREAT,
+    bp_dist = DIABP,
+    bp_syst = SYSBP,
+    hyp_hist = HYPERTEN,
     cvd = CVD,
-    worsening_heart_failure = WHF,
+    wors_hrt_f = WHF,
     used_digoxin = DIG,
     hospitalized = HOSP,
     hospdays = HOSPDAYS,
@@ -32,7 +32,7 @@ data <- dig.df %>%
   ) %>%
   mutate( 
     patient_id = as.character(patient_id),
-    treatment_group = recode_factor(treatment_group, '0'="Placebo", '1'="Treatment"),
+    treatment_group = recode_factor(treatment_group, '0'="CRTL", '1'="TRTM"),
     sex = recode_factor(sex, '1'="M", '2'="F"),
     hypertension_hist = recode_factor(hypertension_hist, '1'  = "Yes", '0'= "No"),
     cvd = recode_factor(cvd, '1'="CVD Event", '0'="No CVD Event"),
@@ -42,3 +42,6 @@ data <- dig.df %>%
                                  '0'="No Hospitalization"),
     death_status = recode_factor(death_status, '0'="Alive", '1'="Death")
   )
+
+num_vars <- names(select(dig_data, where(is.numeric))) 
+cat_vars <- names(select(dig_data, where(is.factor)))

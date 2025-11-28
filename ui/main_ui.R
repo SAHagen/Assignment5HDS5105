@@ -4,7 +4,6 @@ source("ui/primary_outcomes_ui.R", local = TRUE)
 
 ui <- navbarPage(
   titlePanel("DIG Trail Explorer"),
-  #theme = shinytheme("readable"),
   tabsetPanel(
     overviewUI("overview"),
     baselineUI("baseline"),

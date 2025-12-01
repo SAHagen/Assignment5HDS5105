@@ -25,8 +25,9 @@ outcomesServer <- function(id) {
     output$kp_interactions <- renderPlot({
       
       data <- dig_data
+      variable <- input$outcome
       
-      model_outcome <- survfit(Surv(month, death_status) ~ input$outcome + trtmt, data =  dig_data)
+      model_outcome <- survfit(Surv(month, death_status) ~ variable + trtmt, data =  dig_data)
       plot(model_cvd, col = c("#FF0000", "#0000FF", "#00FF00", "#7f00ff"),
            xlab = "Time in Months",
            ylab = "Survival Probability",

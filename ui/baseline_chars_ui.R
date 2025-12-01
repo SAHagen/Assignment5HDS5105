@@ -21,11 +21,20 @@ baselineUI <- function(id){
             plotlyOutput(ns("num_plot"))
             
           ),
-          column(width = 6,)
+          column(width = 6,
+                 h4("Bar Charts for Categorical Varibles"),
+                 #output for bar  charts here 
+                 )
         ),
         fluidRow(
-          column(width = 6,),
-          column(width = 6,)
+          column(width = 6,
+                 h4("Cross Tables"),
+                 # output for cross tabulation of the categorical variables
+                 ),
+          column(width = 6,
+                 h4("Table"),
+                 #
+                 )
         )
       )
     )

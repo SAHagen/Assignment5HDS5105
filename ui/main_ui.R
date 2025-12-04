@@ -5,7 +5,7 @@ source("ui/primary_outcomes_ui.R", local = TRUE)
 ui <- navbarPage(
   
   title = "DIG Trail Explorer",
-  header = shinythemes::themeSelector(),
+  theme = shinytheme("cosmo"),
   overviewUI("overview"),
   baselineUI("baseline"),
   outcomesUI("outcomes")

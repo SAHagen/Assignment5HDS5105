@@ -10,8 +10,12 @@ baselineServer <- function(id) {
                      values_to = "Values")
       
       plot <- ggplot(num_data, aes(x = trtmt, y = Values, fill= trtmt)) +
-                       geom_boxplot()+
-                       facet_wrap(~Variable, scales = "free_y")
+        geom_boxplot()+
+        facet_wrap(~Variable, scales = "free_y") +
+        labs(title = "Data Distribution",
+             x = "Variable", 
+             y = "Frequency")
+        
       
       ggplotly(plot)
     })
@@ -37,6 +41,21 @@ baselineServer <- function(id) {
              y = "Frequency")
       
       ggplotly(plot)
+    })
+    
+    output$association_table <- renderTable({
+
+      
+      formula_string <- paste("~", input$row_var, "|", input$col_var, "* trtmt")
+      final_formula <- as.formula(formula_string)
+      table1(final_formula, data = dig_data)
+      
+    })
+    
+    output$formula_caption <- renderText({
+      
+      paste("Current Formula: table1( ~", input$row_var, "|", input$col_var, "* trtmt, data = dig_data)")
+      
     })
     
     

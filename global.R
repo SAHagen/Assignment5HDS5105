@@ -48,10 +48,5 @@ dig_data <- dig.df %>%
 
 outcomes <- dig_data %>%
   select(bmi, bp_dist, bp_syst, hyp_hist, age, wors_hrt_f, death_status, cvd)
-
-
-#outcome_vars_1 <- names(select(outcomes, where(is.numeric)))
-#outcome_vars_2 <- names(select(outcomes, where(is.factor)))
-#outcome_vars <- c(outcome_vars_2, outcome_vars_1)
 num_vars <- names(select(dig_data, where(is.numeric))) 
 cat_vars <- names(select(dig_data, where(is.factor)))

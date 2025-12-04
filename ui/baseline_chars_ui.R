@@ -10,8 +10,7 @@ baselineUI <- function(id){
                                multiple = TRUE),
                    selectInput(ns("cat_var"), "Select Caterogorical Variable(s0): ",
                                choices = cat_vars,
-                               selected = c("sex"),
-                               multiple = TRUE)
+                               selected = c("sex"))
       ),
       mainPanel(
         fluidRow(
@@ -23,7 +22,7 @@ baselineUI <- function(id){
           ),
           column(width = 6,
                  h4("Bar Charts for Categorical Varibles"),
-                 #output for bar  charts here 
+                 plotlyOutput(ns("bar_plot"))
                  )
         ),
         fluidRow(

@@ -18,14 +18,12 @@ baselineServer <- function(id) {
     output$bar_plot <- renderPlotly({
       
       cat_data <- dig_data%>%
-        select(trtmt, all_of(input$cat_var)) %>%
-        pivot_longer(cols = -trtmt,
-                     names_to = "Variable",
-                     values_to = "Values")
-      
-      plot <- ggplot(cat_data, aes(x = Variable, fill = Values)) +
-        geom_bar()+
-        facet_wrap(~Variable, scales = "free_y")
+        select(trtmt, all_of(input$cat_var))
+      table = cat_data %>% table() %>% as.data.frame
+      print(table)
+      plot <- ggplot(tabledf, aes(x = table[,1], y = Freq)) +
+        geom_bar(stat = "identity", fill = c("firebrick", "darkturquoise", "green4", "navy"), color = "black") +
+        labs(title = "Treatment in Selected Variable\n", x = rownames(table[,1]), y = "Frequency")
       
       ggplotly(plot)
     })

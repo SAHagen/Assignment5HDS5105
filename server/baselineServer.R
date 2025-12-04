@@ -15,15 +15,26 @@ baselineServer <- function(id) {
       
       ggplotly(plot)
     })
+    
     output$bar_plot <- renderPlotly({
       
       cat_data <- dig_data%>%
         select(trtmt, all_of(input$cat_var))
-      table = cat_data %>% table() %>% as.data.frame
-      print(table)
-      plot <- ggplot(tabledf, aes(x = table[,1], y = Freq)) +
-        geom_bar(stat = "identity", fill = c("firebrick", "darkturquoise", "green4", "navy"), color = "black") +
-        labs(title = "Treatment in Selected Variable\n", x = rownames(table[,1]), y = "Frequency")
+      
+      tabledf = cat_data %>%
+        table() %>% 
+        as.data.frame
+      
+      #print(table)
+  
+      
+      plot <- ggplot(tabledf, aes(x = tabledf[,1], y = Freq)) +
+        geom_bar(stat = "identity", 
+                 fill = c("firebrick", "darkturquoise", "green4", "navy"), 
+                 color = "black") +
+        labs(title = paste("Treatment in", input$cat_var),
+             x = input$cat_var, 
+             y = "Frequency")
       
       ggplotly(plot)
     })

@@ -11,13 +11,9 @@ regressionUI <- function(id){
       ),
       mainPanel(
         fluidRow(
-          column(width = 6,
+          column(width = 12,
                  h4("Plot with Regression"),
-                 plotOutput(ns("kp_curve_trt"))
-          ),
-          column(width = 6,
-                 h4("kpinteractions"),
-                 plotOutput(ns("kp_interactions"))
+                 plotOutput(ns("reg_plot"))
           )
         )
       )

@@ -11,10 +11,13 @@ regressionUI <- function(id){
       ),
       mainPanel(
         fluidRow(
-          column(width = 12,
+          column(width = 11,
                  h4("Plot with Regression"),
                  plotOutput(ns("reg_plot"))
-          )
+          ),
+          column(width = 1,
+                 h4("R- Squared"),
+                 textOutput(ns("RSquared")))
         )
       )
     )

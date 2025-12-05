@@ -14,5 +14,13 @@ regressionServer <- function(id) {
           ylab = columnnames[2]) +
           abline(lm, col = "red")
     })
+    output$RSquared <- renderText({
+      num_data <- dig_data%>%
+        select(all_of(input$num_var))
+      if(ncol(num_data) != 2){
+        return() 
+      }
+      cor(num_data[,1], num_data[,2], method = "pearson", use = "complete.obs")**2
+    })
   })
 }

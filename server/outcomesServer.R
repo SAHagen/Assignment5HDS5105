@@ -43,10 +43,6 @@ outcomesServer <- function(id) {
       
     })
    
-    
-   
-    
-    
     output$sankey_plot <- renderPlot({
   
       sankey_data <- dig_data %>%
@@ -61,7 +57,7 @@ outcomesServer <- function(id) {
         scale_x_discrete(limits = c("Treatment", input$outcome_var_sanky , "Final Status"), 
                          expand = c(.05, .05)) +
         scale_fill_brewer(type = "qual", palette = "Set1") +
-        labs(title = "Patient Flow: From Treatment to Outcome",
+        labs(title = "Patient Flow: Treatment to Outcome",
              y = "Number of Patients") +
         theme_minimal() +
         theme(legend.position = "none") 

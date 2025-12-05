@@ -43,24 +43,21 @@ outcomesServer <- function(id) {
       
     })
    
-    
-   
-    
     output$sankey_plot <- renderPlot({
   
       sankey_data <- dig_data %>%
-        group_by(trtmt, hospitalized, death_status) %>%
+        group_by(trtmt, .data[[input$outcome_var_sanky]], death_status) %>%
         tally() 
       
       ggplot(sankey_data,
-             aes(y = n, axis1 = trtmt, axis2 = hospitalized, axis3 = death_status)) +
+             aes(y = n, axis1 = trtmt, axis2 = .data[[input$outcome_var_sanky]], axis3 = death_status)) +
         geom_alluvium(aes(fill = trtmt), width = 1/12) +
         geom_stratum(width = 1/12, fill = "grey80", color = "grey") +
         geom_label(stat = "stratum", aes(label = after_stat(stratum))) +
-        scale_x_discrete(limits = c("Treatment", "Hospitalized?", "Final Status"), 
+        scale_x_discrete(limits = c("Treatment", input$outcome_var_sanky , "Final Status"), 
                          expand = c(.05, .05)) +
         scale_fill_brewer(type = "qual", palette = "Set1") +
-        labs(title = "Patient Flow: From Treatment to Outcome",
+        labs(title = "Patient Flow: Treatment to Outcome",
              y = "Number of Patients") +
         theme_minimal() +
         theme(legend.position = "none") 

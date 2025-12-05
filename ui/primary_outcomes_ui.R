@@ -5,7 +5,10 @@ outcomesUI <- function(id){
     sidebarLayout(
       sidebarPanel(width = 3,
                    selectInput(ns("outcome"), "Select Outcome for Survival Fitting", 
-                               choices = cat_vars, selected = "cvd")),
+                               choices = cat_vars, selected = "cvd"),
+                   br(),
+                   selectInput(ns("outcome_var_sanky"), "Select Outcome for Sankey Plot",
+                               choices = sanky_vars, selected ="cvd")),
       mainPanel(
         fluidRow(
           column(width = 6,

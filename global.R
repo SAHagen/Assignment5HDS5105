@@ -57,4 +57,4 @@ outcomes <- dig_data %>%
 num_vars <- names(select(dig_data, where(is.numeric))) 
 cat_vars <- names(select(dig_data, where(is.factor)))
 vars_for_table1 <- cat_vars[-1]
-
+sanky_vars <- vars_for_table1[-7]

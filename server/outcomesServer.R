@@ -44,14 +44,7 @@ outcomesServer <- function(id) {
     })
    
     
-    #output$cif_plot <- renderPlot({
-      
-     # ggplot(dig_data, aes(x=trtmt, y=hospdays, fill=trtmt)) +
-        #geom_boxplot() +
-        #labs(title = "Burden of Disease: Days Hospitalized by Treatment",
-          #   y = "Total Days in Hospital")
-      
-   # })
+   
     
     
     output$sankey_plot <- renderPlot({
